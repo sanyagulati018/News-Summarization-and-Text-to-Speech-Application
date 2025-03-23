@@ -1,70 +1,47 @@
 Documentation
 1. Project Setup
 Steps to install and run the application:
-
 Prerequisites
 Python 3.8 or higher installed.
-
 A valid API key for GNews API.
-
 Installation
 Clone the repository or download the project files.
 
 Navigate to the project directory:
-
-bash
-Copy
 cd <project-directory>
-Install the required dependencies:
 
-bash
-Copy
+Install the required dependencies:
 pip install -r requirements.txt
+
 Running the Application
 Open the main.py file and replace the api_key variable with your GNews API key:
-
-python
-Copy
 api_key = "your_gnews_api_key_here"
+
 Run the application:
-
-bash
-Copy
 python main.py
+
 The application will:
-
 Fetch news articles for the specified company (e.g., "Google").
-
 Analyze the sentiment of each article.
-
 Summarize the article content.
-
 Convert the summary to Hindi speech and save it as an MP3 file.
-
 Play the generated audio.
 
 2. Model Details
 The project uses pre-trained models from the transformers library by Hugging Face for summarization and sentiment analysis.
-
 Sentiment Analysis
 Model: distilbert-base-uncased-finetuned-sst-2-english
-
 Purpose: Analyze the sentiment of the news article content.
-
 Output: Returns POSITIVE or NEGATIVE.
 
 Text Summarization
 Model: facebook/bart-large-cnn
-
 Purpose: Summarize the news article content into a shorter version.
-
 Output: Returns a summarized text with a maximum length of 130 characters.
 
 Text-to-Speech (TTS)
 Library: gTTS (Google Text-to-Speech)
-
 Purpose: Convert the summarized text into Hindi speech.
-
 Output: Saves the speech as an MP3 file and plays it.
 
 3. API Development
@@ -73,25 +50,6 @@ The project uses the GNews API to fetch news articles.
 API Endpoint
 URL: https://gnews.io/api/v4/search
 
-Parameters:
-
-q: Query string (e.g., company name).
-
-lang: Language of the articles (e.g., en for English).
-
-country: Country code (e.g., us for the United States).
-
-max: Maximum number of articles to fetch (e.g., 10).
-
-token: Your GNews API key.
-
-Accessing the API
-You can test the API using tools like Postman or directly via the browser.
-
-Example API request:
-
-Copy
-https://gnews.io/api/v4/search?q=google&lang=en&country=us&max=10&token=your_api_key
 API Response
 The API returns a JSON response with the following structure:
 
@@ -110,47 +68,29 @@ Copy
 4. API Usage
 Third-Party APIs Used
 GNews API:
-
 Purpose: Fetch news articles related to a specific company.
-
 Integration: The fetch_news function in api.py makes a GET request to the GNews API and processes the response.
 
 Google Text-to-Speech (gTTS):
-
 Purpose: Convert summarized text into Hindi speech.
-
 Integration: The text_to_speech_hindi function in utils.py uses the gTTS library to generate and save the audio file.
 
 5. Assumptions & Limitations
 Assumptions
 API Key: The user has a valid GNews API key.
-
 Input: The company name provided is valid and returns relevant news articles.
-
 Language: The sentiment analysis and summarization models are optimized for English text.
-
 Text-to-Speech: The TTS functionality is limited to Hindi and may not support other languages without modification.
 
 Limitations
 API Rate Limits: The GNews API has rate limits (e.g., 100 requests per day for the free tier).
-
-Model Accuracy:
-
-Sentiment analysis may not always be accurate for ambiguous or neutral text.
-
-Summarization may lose some context for very long or complex articles.
-
+Model Accuracy: Sentiment analysis may not always be accurate for ambiguous or neutral text. Summarization may lose some context for very long or complex articles.
 TTS Quality: The quality of Hindi TTS depends on the gTTS library and may not be perfect for all text.
-
 Dependencies: The project relies on third-party libraries and APIs, which may change or become unavailable in the future.
 
 6. Future Improvements
 Support for Multiple Languages: Extend TTS functionality to support more languages.
-
 Error Handling: Improve error handling for API requests and model predictions.
-
 Caching: Implement caching to reduce API calls and improve performance.
-
 User Interface: Develop a web or mobile interface for easier interaction.
-
 Advanced Models: Use more advanced models for sentiment analysis and summarization.
